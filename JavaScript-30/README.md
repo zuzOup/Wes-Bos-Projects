@@ -1,6 +1,4 @@
 # JavaScript 30
-My solutions to [JavaScript 30](https://javascript30.com/).  
-This course is free on Wes' website, my solutions are Wes' starter HTML + my solutions under <script> tag
+This course is free on Wes' [website](https://javascript30.com/ 'JavaScript 30'), solutions uploaded here are Wes' starter HTML + my solutions under <script> tag
 
-- **10. Hold Shift to Check Multiple Checkboxes**
-  &nbsp;JS: 98 - 134 
+- **10. Hold Shift to Check Multiple Checkboxes** lines: 98 - 134 
