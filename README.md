@@ -2,7 +2,8 @@
 Wes Bos' [courses](https://wesbos.com/courses) projects I have completed.
 
 ### JavaScript 30
-- **10.** Hold Shift And Check Checkboxes
+- **3.** CSS Varibles
+-  **10.** Hold Shift And Check Checkboxes
 
 ### Beginner JavaScript
 
