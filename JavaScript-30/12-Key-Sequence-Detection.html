@@ -19,7 +19,7 @@
       const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66]; // up 38, down 40, left 37, right 39, a 65, b 66
       let code = [];
       function konami(event) {
-        if (event.which === 38 && code === []) {
+        if (event.which === 38 && code.length === 0) {
           code.push(event.which);
         } else {
           code.push(event.which);
