@@ -8,3 +8,4 @@ This course is free on Wes' [website](https://javascript30.com/ "JavaScript 30")
 - **10. Hold Shift to Check Multiple Checkboxes** JS: 98 - 134
 - **12. Key Sequence Detection** JS: 13 - 42
 - **16. Mouse SHadow** JS: 38-69
+- **24. Sticky Nav** JS: 273 - 289 (CSS unchanged)
