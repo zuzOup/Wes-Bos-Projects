@@ -75,23 +75,23 @@
     <script>
       const spacing = document.getElementById("spacing");
 
-      spacing.addEventListener("change", function () {
+      spacing.addEventListener("input", function () {
         document.documentElement.style.setProperty(
           "--spacing",
-          spacing.value + "px"
+          this.value + "px"
         );
       });
 
       const blur = document.getElementById("blur");
 
-      blur.addEventListener("change", function () {
-        document.documentElement.style.setProperty("--blur", blur.value + "px");
+      blur.addEventListener("input", function () {
+        document.documentElement.style.setProperty("--blur", this.value + "px");
       });
 
       const base = document.getElementById("base");
 
-      base.addEventListener("change", function () {
-        document.documentElement.style.setProperty("--base", base.value);
+      base.addEventListener("input", function () {
+        document.documentElement.style.setProperty("--base", this.value);
       });
     </script>
   </body>
