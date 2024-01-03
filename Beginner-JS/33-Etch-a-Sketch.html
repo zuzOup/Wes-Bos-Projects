@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etch & Sketch ... catified 🐾</title>
+    <link rel="icon" href="https://fav.farm/🙀" />
+  </head>
+
+  <body>
+    <div class="canvasWrap">
+      <canvas width="1600" height="1000" id="etch-a-sketch"></canvas>
+      <div class="buttons">
+        <button class="shake">Shake!</button>
+      </div>
+    </div>
+
+    <style>
+      body {
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        background: white;
+        background: repeat 50%/50%
+          url(https://media.istockphoto.com/id/1317142479/vector/cute-cartoon-pink-cat-pattern.jpg?s=612x612&w=0&k=20&c=tX4yTpPC8QdV0b3Afowb9JfzPFhfe9LyaQbn8M6mNaw=);
+      }
+
+      canvas {
+        border: 30px solid rgb(255, 192, 216);
+        border-radius: 10px;
+        /* Set the width and height to half the actual size so it doesn't look pixelated */
+        width: 800px;
+        height: 500px;
+        background: white;
+      }
+
+      canvas.shake {
+        animation: shake 0.5s linear 1;
+      }
+
+      @keyframes shake {
+        10%,
+        90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+
+        20%,
+        80% {
+          transform: translate3d(2px, 0, 0);
+        }
+
+        30%,
+        50%,
+        70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+
+        40%,
+        60% {
+          transform: translate3d(4px, 0, 0);
+        }
+      }
+
+      button {
+        background-color: rgb(255, 192, 216);
+        border: 3px solid rgb(193, 84, 141);
+        color: white;
+        padding: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.5rem;
+      }
+
+      button:hover {
+        color: rgb(193, 84, 141);
+      }
+    </style>
+    <script>
+      const canvas = document.getElementById("etch-a-sketch");
+      const ctx = canvas.getContext("2d");
+      const button = document.getElementsByClassName("shake")[0];
+
+      // settings
+
+      const { width } = canvas;
+      const { height } = canvas;
+
+      const startX = Math.floor(Math.random() * width);
+      const startY = Math.floor(Math.random() * height);
+
+      let lastX = startX;
+      let lastY = startY;
+
+      const keys = {
+        ArrowUp: [0, -10],
+        ArrowDown: [0, 10],
+        ArrowLeft: [-10, 0],
+        ArrowRight: [10, 0],
+      };
+
+      ctx.lineWidth = 10;
+      ctx.lineCap = "round";
+
+      const colors = [
+        "rgb(128, 2, 73)",
+        "rgb(135, 6, 78)",
+        "rgb(142, 12, 83)",
+        "rgb(150, 17, 89)",
+        "rgb(155, 27, 94)",
+        "rgb(159, 37, 100)",
+        "rgb(163, 45, 105)",
+        "rgb(167, 53, 110)",
+        "rgb(171, 60, 116)",
+        "rgb(175, 67, 121)",
+        "rgb(178, 73, 126)",
+        "rgb(182, 79, 130)",
+        "rgb(185, 85, 135)",
+        "rgb(189, 91, 139)",
+        "rgb(193, 97, 143)",
+        "rgb(196, 102, 147)",
+        "rgb(200, 107, 151)",
+        "rgb(204, 112, 155)",
+        "rgb(207, 117, 159)",
+        "rgb(211, 122, 162)",
+        "rgb(214, 127, 166)",
+        "rgb(218, 132, 170)",
+        "rgb(221, 137, 174)",
+        "rgb(224, 141, 177)",
+        "rgb(227, 146, 181)",
+        "rgb(230, 151, 184)",
+        "rgb(233, 156, 188)",
+        "rgb(236, 161, 192)",
+        "rgb(239, 165, 195)",
+        "rgb(241, 170, 199)",
+        "rgb(244, 175, 202)",
+        "rgb(247, 179, 206)",
+        "rgb(250, 184, 209)",
+        "rgb(252, 188, 212)",
+        "rgb(253, 194, 216)",
+        "rgb(254, 200, 219)",
+        "rgb(254, 205, 223)",
+        "rgb(254, 211, 226)",
+        "rgb(254, 216, 229)",
+        "rgb(255, 222, 233)",
+      ];
+
+      let color = 0;
+      let direction = 1;
+      ctx.lineWidth = 10;
+
+      const purring = new Audio(
+        "https://cdn.pixabay.com/audio/2021/08/04/audio_7d5d26b7cf.mp3"
+      );
+
+      // find right keys and move
+
+      function changeDirection(e) {
+        if (
+          lastX + keys[e.key][0] <= width &&
+          lastY + keys[e.key][1] <= height &&
+          lastX + keys[e.key][0] >= 0 &&
+          lastY + keys[e.key][1] >= 0
+        ) {
+          lastX += keys[e.key][0];
+          lastY += keys[e.key][1];
+        }
+      }
+
+      // change color
+
+      function changeColor() {
+        ctx.strokeStyle = colors[color];
+        console.log(color);
+        console.log(colors.length);
+        console.log(direction);
+        if (color < colors.length - 1 && direction === 1) {
+          color++;
+        } else if (color === colors.length - 1 && direction === 1) {
+          color++;
+          direction = 0;
+        } else if (color === 0 && direction === 0) {
+          direction = 1;
+        } else {
+          color--;
+        }
+      }
+
+      // drawing
+
+      function draw(e) {
+        clearTimeout();
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        if (e && keys[e.key]) {
+          purring.play();
+          changeDirection(e);
+          changeColor();
+        }
+        ctx.lineTo(lastX, lastY);
+        ctx.stroke();
+      }
+
+      // clear buttom
+
+      function shake() {
+        ctx.clearRect(0, 0, width, height);
+        canvas.classList.add("shake");
+        setTimeout(() => {
+          canvas.classList.remove("shake");
+        }, 500);
+        draw();
+        const meow = new Audio(
+          "https://assets.mixkit.co/active_storage/sfx/93/93-preview.mp3"
+        );
+        meow.play();
+      }
+
+      draw();
+      button.addEventListener("click", shake);
+      document.addEventListener("keydown", draw);
+      document.addEventListener("keyup", () => {
+        setTimeout(() => {
+          purring.pause();
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
