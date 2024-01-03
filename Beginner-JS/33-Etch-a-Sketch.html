@@ -173,9 +173,7 @@
 
       function changeColor() {
         ctx.strokeStyle = colors[color];
-        console.log(color);
-        console.log(colors.length);
-        console.log(direction);
+
         if (color < colors.length - 1 && direction === 1) {
           color++;
         } else if (color === colors.length - 1 && direction === 1) {
@@ -196,6 +194,7 @@
         ctx.moveTo(lastX, lastY);
         if (e && keys[e.key]) {
           purring.play();
+          console.log(purring.currentTime);
           changeDirection(e);
           changeColor();
         }
