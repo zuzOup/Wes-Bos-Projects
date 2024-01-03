@@ -13,4 +13,6 @@ Wes Bos' [courses](https://wesbos.com/courses) projects I have completed (differ
 
 ### Beginner JavaScript
 
+-**33.** Etch A Sketch (enhanced cat version)
+
 
