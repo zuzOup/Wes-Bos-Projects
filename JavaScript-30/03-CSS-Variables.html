@@ -35,7 +35,7 @@
       <input id="base" type="color" name="base" value="#ffc0cb" />
     </div>
 
-    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" />
+    <img src="https://picsum.photos/800/500" />
 
     <style>
       :root {
@@ -76,10 +76,7 @@
       const spacing = document.getElementById("spacing");
 
       spacing.addEventListener("input", function () {
-        document.documentElement.style.setProperty(
-          "--spacing",
-          this.value + "px"
-        );
+        document.documentElement.style.setProperty("--spacing", this.value + "px");
       });
 
       const blur = document.getElementById("blur");
@@ -96,3 +93,4 @@
     </script>
   </body>
 </html>
+
